@@ -166,6 +166,53 @@
   .notes ul{margin:0;padding:14px 16px 14px 30px;background:#f6f8fa;border-radius:14px;font-size:14px;line-height:1.8}
   .notes .howto ul{background:#faf6f7}
   footer{text-align:center;font-size:12px;color:#999;padding:0 0 24px}
+
+  /* ===== 第23弾 ===== */
+  /* 使い方：最初は畳んでおく */
+  .notes details{background:#faf6f7;border-radius:14px}
+  .notes summary{cursor:pointer;font-size:15px;font-weight:700;padding:10px 16px;list-style:none}
+  .notes summary::-webkit-details-marker{display:none}
+  .notes summary::before{content:'▶';display:inline-block;font-size:10px;margin-right:8px;color:#888;transition:transform .2s}
+  .notes details[open] summary::before{transform:rotate(90deg)}
+  .notes details ul{background:none;padding-top:0}
+  .chip .long{display:inline}
+
+  /* スマホ縦：ボタンを横顔の右に縦に並べて、横顔を大きく */
+  @media (max-width:699px){
+    .hero{padding:6px 16px 0} .hero h1{font-size:20px} .hero .titlerow{padding-bottom:5px}
+    .figwrap{display:grid;grid-template-columns:minmax(0,1fr) 68px;column-gap:6px;align-items:stretch;padding:6px 16px 4px}
+    .panel{display:contents}
+    #fig{grid-column:1;grid-row:1;width:100%;height:auto;max-height:calc(100vh - 312px);max-height:calc(100svh - 312px);min-height:0;align-self:center}
+    .ctrls{grid-column:2;grid-row:1;grid-template-columns:1fr;grid-auto-rows:1fr;gap:5px;margin:0;max-width:none;align-self:stretch}
+    .chip{height:auto;min-height:0;padding:2px 1px;border-radius:10px}
+    #btnNames{order:-1}  /* 部位の名前を一番上に：下から 息の流れ→声帯→響鳴空間→喉頭蓋→軟口蓋 と体の並びにそろう */
+    .chip .nm,.chip .st{font-size:9.5px;white-space:normal;text-align:center}
+    .info{grid-column:1 / -1;grid-row:2;margin:6px 0 0;max-width:none;height:68px;min-height:0;font-size:12.5px;line-height:1.5;padding:4px 8px}
+    .info .big{font-size:19px}
+    .vrow{padding:4px 16px} .vh{height:34px;font-size:19px}
+  }
+  /* タブレット：表の1行を少し低く（スクロールを減らす） */
+  @media (min-width:700px){ .k{height:40px} .card td.band{height:40px} .notes{margin-top:8px;padding-bottom:12px} footer{padding-bottom:8px} }
+
+  /* スマホ横向き：横顔を左に高さいっぱい、右にボタン・説明・表 */
+  @media (orientation:landscape) and (max-height:520px){
+    .hero,main{max-width:none}
+    .hero{padding:4px 16px 0} .hero h1{font-size:18px} .hero .titlerow{padding-bottom:4px}
+    main{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 16px}
+    .figcol,.figwrap{display:contents}
+    #fig{grid-column:1;grid-row:1;position:sticky;top:calc(var(--heroH) + 4px);align-self:start;
+      height:calc(100vh - var(--heroH) - 8px);height:calc(100svh - var(--heroH) - 8px);width:auto;max-height:none;min-height:0}
+    .rightcol{grid-column:2;grid-row:1}
+    .panel{display:block;position:sticky;top:var(--heroH);z-index:6;background:#fff;padding:4px 0}
+    .ctrls{grid-column:auto;grid-row:auto;grid-auto-rows:auto;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:0;max-width:none}
+    .chip{height:38px} .chip .nm{font-size:10px} .chip .st{font-size:9.5px}
+    .chip .long{display:none}
+    .info{height:70px;min-height:0;margin:4px 0 0;max-width:none;font-size:12.5px;line-height:1.5;padding:4px 8px}
+    .tbl,.vrow{max-width:none}
+    .vrow{margin:0;padding:4px 0;box-shadow:none}
+    .vh{height:32px;font-size:18px}
+    .k{height:40px} .card td.band{height:40px}
+  }
 </style>
 
 </head>
@@ -569,7 +616,7 @@
 <rect id="veil" x="0" y="0" width="595" height="842" fill="#fff" opacity="0"/>
 <g id="hlLayer"><g class="hl" data-c="1" style="--cc:var(--c1)"><g class="halo" filter="url(#haloF)"><use href="#e46040"/><use href="#e46384"/><use href="#e50485"/><use href="#e54553"/></g><use href="#e46040"/><use href="#e46384"/><use href="#e50485"/><use href="#e54553"/></g><g class="hl" data-c="2" style="--cc:var(--c2)"><g class="halo" filter="url(#haloF)"><use href="#e46721"/><use href="#e46988"/><use href="#e50931"/><use href="#e54999"/></g><use href="#e46721"/><use href="#e46988"/><use href="#e50931"/><use href="#e54999"/></g><g class="hl" data-c="3" style="--cc:var(--c3)"><g class="halo" filter="url(#haloF)"><use href="#e47257"/><use href="#e47614"/><use href="#e51601"/><use href="#e55689"/></g><use href="#e47257"/><use href="#e47614"/><use href="#e51601"/><use href="#e55689"/></g><g class="hl" data-c="4" style="--cc:var(--c4)"><g class="halo" filter="url(#haloF)"><use href="#e47881"/><use href="#e48067"/><use href="#e48338"/><use href="#e48525"/><use href="#e52577"/><use href="#e56673"/></g><use href="#e47881"/><use href="#e48067"/><use href="#e48338"/><use href="#e48525"/><use href="#e52577"/><use href="#e56673"/></g><g class="hl" data-c="5" style="--cc:var(--c5)"><g class="halo" filter="url(#haloF)"><use href="#e48797"/><use href="#e49071"/><use href="#e53191"/><use href="#e57288"/></g><use href="#e48797"/><use href="#e49071"/><use href="#e53191"/><use href="#e57288"/></g><g class="hl" data-c="6" style="--cc:var(--c6)"><g class="halo" filter="url(#haloF)"><use href="#e54093"/><use href="#e58193"/></g><use href="#e54093"/><use href="#e58193"/></g><path id="foldClosed" d="M 283.1 680.4 C 297.48 678.05 310.12 678.64 310.78 682.68 C 311.44 686.73 299.73 691.29 285.26 693.65 C 270.97 695.98 258.32 695.41 257.66 691.34 C 257 687.28 268.81 682.73 283.1 680.4 " fill="var(--c6)" opacity="0"/></g>
 
-<defs><clipPath id="airClip"><use href="#gAir"/><rect x="0" y="430" width="57" height="95"/><rect x="0" y="497" width="100" height="21"/></clipPath></defs>
+<defs><clipPath id="airClip"><path id="airClipP"/><rect x="0" y="430" width="57" height="95"/><rect x="0" y="497" width="100" height="21"/></clipPath></defs>
 <g id="flows" clip-path="url(#airClip)">
   <path id="flowTrunk" class="flow"/><path id="flowMouth" class="flow"/><path id="flowNose" class="flow"/>
 </g>
@@ -605,10 +652,10 @@
 <div class="ctrls">
   <button class="chip" id="btnVelum"><span class="nm">軟口蓋</span><span class="st">下がっている</span></button>
   <button class="chip" id="btnEpi"><span class="nm">喉頭蓋</span><span class="st">起き上がる</span></button>
-  <button class="chip" id="btnLar"><span class="nm">喉の響鳴空間</span><span class="st">ふつう</span></button>
+  <button class="chip" id="btnLar"><span class="nm"><span class="long">喉の</span>響鳴空間</span><span class="st">ふつう</span></button>
   <button class="chip" id="btnFold"><span class="nm">声帯</span><span class="st">開いている</span></button>
   <button class="chip" id="btnFlow"><span class="nm">息の流れ</span><span class="st">表示しない</span></button>
-  <button class="chip on" id="btnNames"><span class="nm">部位の名前</span><span class="st">表示する</span></button>
+  <button class="chip on" id="btnNames"><span class="nm">部位<span class="long">の</span>名前</span><span class="st">表示する</span></button>
 </div>
 <div class="info" id="info"></div>
 </div>
@@ -624,14 +671,14 @@
 </section>
 <div class="tail">
 <section class="notes">
-  <div class="howto">
-    <h3>使い方</h3>
+  <details class="howto">
+    <summary>使い方</summary>
     <ul>
       <li>表の文字をタップすると、図の中の「音を作る場所」が光って、くり返し動きます。もう一度タップすると止まります。</li>
       <li>表の上の「い え あ お う」をタップすると、その母音の舌の形が図に出ます。図の口蓋垂・喉頭蓋・舌骨・声帯をタップすると名前が出ます。</li>
       <li>図も言葉も簡略化＆デフォルメしています。正確な情報は専門書を読むかネットで調べるか耳鼻咽喉科のドクターに聞いてください。</li>
     </ul>
-  </div>
+  </details>
 </section>
 <footer>府中西高校合唱部 強化書　© 2026 藤井達也</footer>
 </div>
@@ -713,7 +760,7 @@ CATS.forEach(c=>{
   tb.innerHTML=h; cardsEl.appendChild(tb);
 });
 // 横長の画面では、ボタンと説明欄を右の列の一番上へ。それ以外は図のすぐ下へ
-const WIDE = matchMedia('(min-width:1100px) and (min-aspect-ratio:5/4)');
+const WIDE = matchMedia('(min-width:1100px) and (min-aspect-ratio:5/4), (orientation:landscape) and (max-height:520px)');
 function placePanel(){
   const panel=document.querySelector('.panel'), rc=document.querySelector('.rightcol'), fw=document.querySelector('.figwrap');
   if(WIDE.matches){ if(panel.parentNode!==rc) rc.prepend(panel); }
@@ -725,8 +772,8 @@ function setThTop(){
   const hh=document.querySelector('.hero').offsetHeight;
   document.documentElement.style.setProperty('--heroH', hh+'px');
   let t=hh;
-  if(matchMedia('(max-width:699px)').matches) t+=document.querySelector('.figwrap').offsetHeight;
-  else if(matchMedia('(min-width:1100px) and (min-aspect-ratio:5/4)').matches) t+=document.querySelector('.panel').offsetHeight;
+  if(WIDE.matches) t+=document.querySelector('.panel').offsetHeight;
+  else if(matchMedia('(max-width:699px)').matches) t+=document.querySelector('.figwrap').offsetHeight;
   document.documentElement.style.setProperty('--thTop', t+'px');
 }
 addEventListener('resize', setThTop); addEventListener('load', setThTop); setThTop();
@@ -1328,6 +1375,9 @@ const INC_PAIRS=[[105.5,465,14],[104.2,473,9],[102.8,481,4],[101.5,488,0]];
 let flowOn=false;
 let FLOW_TURN=30, MOUTH_X=312, MOUTH_DY=45, MOUTH_H1=0.25, MOUTH_H2=0.4;   // 分かれ目から、口へ向かって曲がり終えるまでの長さ
 function drawFlows(){
+  // 息の線を切り抜く形：空気の部分（gAir）の今の形を、毎回そのまま写す（Safariは<use>で参照した形の変化を反映しないことがあるため）
+  const ad=document.getElementById('gAir').getAttribute('d'), acp=document.getElementById('airClipP');
+  if(acp.getAttribute('d')!==ad) acp.setAttribute('d',ad);
   const fT=document.getElementById('flowTrunk'), fM=document.getElementById('flowMouth'), fN=document.getElementById('flowNose');
   const tap = gest && kindKey(gest.ipa)==='tap';
   let oral=0; for(const key of [tap?null:'c2','c3','c4','c5']) if(key) oral=Math.max(oral, state[key]*ss(9,7.2,state.gap));
