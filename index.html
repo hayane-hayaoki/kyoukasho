@@ -116,8 +116,7 @@
   #names .nm{opacity:0;transition:opacity .3s;pointer-events:none}
   #names.show .nm,#names .nm.peek{opacity:1}
   .flow{fill:none;stroke:#2f7fbf;stroke-width:3;stroke-linecap:round;opacity:.75;
-    animation:flow .45s linear infinite;stroke-dasharray:1.5 6;stroke-dashoffset:var(--o,0px)}
-  @keyframes flow{from{stroke-dashoffset:var(--o,0px)}to{stroke-dashoffset:calc(var(--o,0px) - 7.5px)}}
+    stroke-dasharray:1.5 6}
 
   /* ---- 表（1枚の表。①〜⑥の見出しで区切る） ---- */
   .tbl{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
@@ -644,7 +643,7 @@
   <g class="nm" data-part="hyoid"><line class="ld" stroke="#888" stroke-width=".4"/><text x="196" y="626" font-size="4.6" fill="#555">ぜっこつ</text><text x="196" y="637" font-size="9.5" fill="#222">舌骨</text></g>
   <g class="nm" data-part="fold"><line class="ld" stroke="#888" stroke-width=".4"/><text x="372" y="698" font-size="4.6" fill="#555">せいたい</text><text x="372" y="709" font-size="9.5" fill="#222">声帯</text></g>
 </g>
-<g id="hits" fill="transparent" style="cursor:pointer">
+<g id="hits" fill="none" pointer-events="all" style="cursor:pointer">
   <circle data-part="uvula" r="10"/><circle data-part="epi" r="10"/><circle data-part="hyoid" r="10"/><circle data-part="fold" r="11"/>
 </g>
 </svg>
@@ -1374,6 +1373,17 @@ const FLOW_PAIRS=(()=>{ const out=[];
 const INC_PAIRS=[[105.5,465,14],[104.2,473,9],[102.8,481,4],[101.5,488,0]];
 let flowOn=false;
 let FLOW_TURN=30, MOUTH_X=312, MOUTH_DY=45, MOUTH_H1=0.25, MOUTH_H2=0.4;   // 分かれ目から、口へ向かって曲がり終えるまでの長さ
+// 点線が流れる動き：Safariに任せず、毎フレームこのページで点線の位置を書きかえる
+// （iPadのSafariで、重なった点線の一部が描き直されず、半分削れて見えたため）
+let flowPh=0;
+function flowTick(now){
+  if(flowOn){ const p=(now/450%1)*7.5;
+    document.getElementById('flowTrunk').setAttribute('stroke-dashoffset',(-p).toFixed(2));
+    document.getElementById('flowMouth').setAttribute('stroke-dashoffset',(flowPh-p).toFixed(2));
+    document.getElementById('flowNose').setAttribute('stroke-dashoffset',(flowPh-p).toFixed(2)); }
+  requestAnimationFrame(flowTick);
+}
+requestAnimationFrame(flowTick);
 function drawFlows(){
   // 息の線を切り抜く形：空気の部分（gAir）の今の形を、毎回そのまま写す（Safariは<use>で参照した形の変化を反映しないことがあるため）
   const ad=document.getElementById('gAir').getAttribute('d'), acp=document.getElementById('airClipP');
@@ -1401,8 +1411,7 @@ function drawFlows(){
   // 枝分かれの直後は、口へ行く線も鼻へ行く線も、のどの線の向きのまま少し進んでから、なだらかに分かれる
   const Fa=[F[0]+ftx*4, F[1]+fty*4], F1=[F[0]+ftx*8, F[1]+fty*8];
   // 点線の模様が、のどの線から枝へ途切れずにつながるようにする
-  const ph=(fT.getTotalLength()%7.5).toFixed(2)+'px';
-  fM.style.setProperty('--o',ph); fN.style.setProperty('--o',ph);
+  flowPh=fT.getTotalLength()%7.5;
   // 口の中：上あごと舌のすき間の真ん中を通る
   // 向かい合う舌の点は、今の舌の形の中で一番近い点を、決めておいた点の近くから探す（舌が奥へ引っこんでも、すき間のまん中を通る）
   const mid=FLOW_PAIRS.map(([i,k0])=>{ const P=palNow[i]; let best=1e9,bk=k0;
